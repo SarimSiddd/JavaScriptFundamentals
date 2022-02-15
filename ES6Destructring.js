@@ -34,10 +34,24 @@ const game = {
 }
 
 game.suspects.forEach(suspect => {
-    suspect.name == "Miss Scarlet" ? suspect.isguilty = true : suspect.isguilty = false;
+    suspect.name === "Miss Scarlet" ? suspect.isguilty = true : suspect.isguilty = false;
     console.log(suspect);
 });
 // foreach(let suspect = game["suspects"])
 // {
 //     console.log(suspect);
 // }
+
+
+// for (let i=0; i< game.suspects.length; i++)
+// {
+//     if (i ===0)
+//         color1 = game.suspects[i].color;
+//     else
+//         color2 = game.suspects[i].color;
+// }
+
+//const [color1, color2] = [game.suspects[0].color, game.suspects[1].color];
+const [{color: color1}, {color: color2}] = game.suspects;
+
+console.log("color1: " + color1 + " color2: " + color2);
