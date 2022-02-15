@@ -33,7 +33,10 @@ const game = {
     ]
 }
 
-game["suspects"].forEach(suspect => {console.log(suspect);});
+game.suspects.forEach(suspect => {
+    suspect.name == "Miss Scarlet" ? suspect.isguilty = true : suspect.isguilty = false;
+    console.log(suspect);
+});
 // foreach(let suspect = game["suspects"])
 // {
 //     console.log(suspect);
