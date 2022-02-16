@@ -8,14 +8,15 @@ var suspect = {
 }
 
 //Hydrating (Creating object from array):
-function createSuspectObjects(name)
+function createSuspectObjects(name, i)
 {
     return{
         name : name,
         color: (name.split(' '))[1],
         speak() {
             console.log("Hello my name is: " + name);
-        }
+        },
+        index: i
     };
 }
 
@@ -49,6 +50,14 @@ const _ = {
     }
 };
 
-_.forEach(suspect, (val)=>{
-    console.log(val);
+// _.forEach(suspect, (val)=>{
+//     console.log(val);
+// });
+
+//Same thing with a map instead:
+const suspectList = suspects.map(createSuspectObjects);
+// console.log(suspectList);
+
+suspects.forEach((v) => {
+    return console.log("Fuck you " + v)
 });
