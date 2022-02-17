@@ -73,46 +73,64 @@ const videoData = [
     }
 ];
 
-// const thosePresent = videoData.filter((val) => {
-//     return val.present === true;
-// })
+const suspects = videoData.filter(v => {
+    return v.present;
+}).map((v) => {
+    return v.name
+});
 
-// console.log(thosePresent);
+//console.log(suspects);
 
-const _ = {};
 
-_.filter = function(list, callback){
-    if (Array.isArray(list))
-    {
-        const temp = [];
-        list.forEach((v, i, arr)=>{
-            let result = callback(v, i, arr);
-            if (result)
-                temp.push(v);
-        });
-        return temp;
-    }
-    else
-    {
-        const temp = {};
-        for (let key in list){
-            let result = callback(list[key], key, list);
-            if (result)
-                temp[key] = list[key];
+//<----- Spread Operator ------->
+
+const createTuple = (a, b, c, ...d)=>{
+
+    return [[a,c], [b,d]];
+}
+
+//console.log(createTuple("It", "be", "could", "anyone", "no one"));
+
+//Default parameter before es6:
+const defaultFunc = function (a, b) {
+
+    // if (arguments.length === 1) {
+    //     b = 1;
+    // }
+    b = b || 2;
+    //console.log(a + ' ' + b);
+}
+defaultFunc(2);
+
+//Array-like object:
+const constructArray = function(){
+    arr = Array.prototype.slice.call(arguments); //Creates separates arrays for args and passes context
+    arr.push("was it in the billiards room?");
+    return arr.join(" ");
+}
+const out = constructArray("was", "it", "in");
+//console.log(out);
+
+//Array.from (Es6 feature:)
+const constructArray2 = function(){
+    arr = Array.from(arguments); //Creates separates arrays for args and passes context
+    arr.push("was it in the billiards room?");
+    return arr.join(" ");
+}
+const out2 = constructArray2("was", "it", "in");
+//console.log(out);
+
+const _ = {
+    from : function(){
+        arr = [];
+        for (let key in arguments) {
+            arr.push(arguments[key]);
         }
-
-        return temp;
+        return arr;
     }
 }
 
-const werePresent = _.filter(videoData, (v)=>{
-    return v.present;
-});
+const out3 = _.from("was", "it", "in");
+console.log(out3);
 
-// const werePresent = _.filter({
-//     present : true
-// }, (v)=> {
-//     return v;
-// });
 
-console.log(werePresent);
